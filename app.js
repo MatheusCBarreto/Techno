@@ -4,7 +4,6 @@ const vm = new Vue({
     produtos: [],
     produto: false,
   },
-  filters: {},
   methods: {
     fetchProdutos() {
       fetch('./api/produtos.json')
