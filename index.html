@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +12,13 @@
 </head>
 <body>
   <div id="app">
-    <section class="modal" v-if="produto">
+    <section class="modal" v-if="produto" @click="fechar_modal">
       <div class="modal_container">
         <div class="modal_img">
           <img :src="produto.img" :alt="produto.nome">
         </div>
         <div class="modal_dados">
+          <button @click="produto = false" class="modal_fechar">X</button>
           <span class="modal_preco">R$ {{produto.preco}}</span>
           <h2 class="modal_titulo">{{produto.nome}}</h2>
           <p>{{produto.descricao}}</p>
@@ -36,7 +37,7 @@
     </section>
 
     <section class="produtos">
-      <div v-for="item in produtos" :key="item.id" class="produto" @click="fetchProduto(item.id)">
+      <div v-for="item in produtos" :key="item.id" class="produto" @click="abrirModal(item.id)">
         <img class="produto_img" :src="item.img" alt="produto.nome">
         <div class="produto_info">
           <span class="produto_preco">R$ {{ item.preco}}</span>
