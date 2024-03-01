@@ -3,6 +3,18 @@ const vm = new Vue({
   data: {
     produtos: [],
     produto: false,
+    carrinho: [],
+  },
+  computed: {
+    carrinhoTotal() {
+      let total = 0;
+      if (this.carrinho.length) {
+        this.carrinho.forEach((item) => {
+          total += item.preco;
+        });
+      }
+      return total;
+    },
   },
   methods: {
     fetchProdutos() {
@@ -36,6 +48,14 @@ const vm = new Vue({
       if (target === currentTarget) {
         this.produto = false;
       }
+    },
+    adicionarItem() {
+      const { id, nome, preco } = this.produto;
+      this.carrinho.push({ id, nome, preco });
+      this.produto.estoque--;
+    },
+    removerItem(index) {
+      this.carrinho.splice(index, 1);
     },
   },
   created() {
