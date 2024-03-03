@@ -17,12 +17,6 @@
       <div class="carrinho_menu">
        R$ {{carrinhoTotal}} | {{carrinho.length}}
       </div>
-      <ul>
-        <li v-for="(item, index) in carrinho">
-          <p>{{item.nome}}</p>
-          <button @click="removerItem(index)">X</button>
-        </li>
-      </ul>
     </header>
     <section class="modal" v-if="produto" @click="fechar_modal">
       <div class="modal_container">
@@ -57,6 +51,26 @@
           <h2 class="produto_titulo">{{item.nome}}</h2>
         </div>
       </div>
+
+      <section class="carrinho_modal" :class="{ativo: carrinhoAtivo}" @click="clickForaCarrinho">
+        <div class="carrinho_conteiner">
+          <button @click="carrinhoAtivo = false"></button>
+          <h2 class="carrinho_titulo">Carrinho</h2>
+          <div v-if="carrinho.length > 0">
+            <ul class="carrinho_lista">
+              <li v-for="(item, index) in carrinho" class="carrinho_item">
+                <p>{{item.nome}}</p>
+                <p class="carrinho-preco">R$ {{item.preco}}</p>
+                <button class="carrinho_remover" @click="removerItem">X</button> 
+              </li>
+            </ul>
+            <p class="carrinho_total">R$ {{carrinhoTotal}}</p>
+            <button class="carrinho_finalizar">Finalizar pedido</button>
+          </div>
+          <p v-else>O carrinho está vazio</p>
+        </div>
+      </section>
+
     </section>
     <div class="alerta" :class="{ativo: alertaAtivo}">
       <p class="alerta_mensagem">{{ mensagemAlerta }}</p>
