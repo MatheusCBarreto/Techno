@@ -14,7 +14,7 @@
   <div id="app">
     <header class="header">
       <img src="./assets/techno.svg" alt="Logo Techno" class="logo">
-      <div class="carrinho_menu">
+      <div class="carrinho_menu" @click="carrinhoAtivo = true">
        R$ {{carrinhoTotal}} | {{carrinho.length}}
       </div>
     </header>
@@ -54,7 +54,7 @@
 
       <section class="carrinho_modal" :class="{ativo: carrinhoAtivo}" @click="clickForaCarrinho">
         <div class="carrinho_conteiner">
-          <button @click="carrinhoAtivo = false"></button>
+          <button class="carrinho_fechar" @click="carrinhoAtivo = false">X</button>
           <h2 class="carrinho_titulo">Carrinho</h2>
           <div v-if="carrinho.length > 0">
             <ul class="carrinho_lista">

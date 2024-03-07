@@ -6,7 +6,7 @@ const vm = new Vue({
     carrinho: [],
     mensagemAlerta: 'Item adicionado',
     alertaAtivo: false,
-    carrinhoAtivo: true,
+    carrinhoAtivo: false,
   },
   computed: {
     carrinhoTotal() {
